@@ -3,14 +3,10 @@ import { debounce } from "lodash";
 import API from "./fetchContries";
 import countryCard from "../templates/cards.hbs";
 import countriesList from "../templates/country-list.hbs";
-
 import { error } from "@pnotify/core";
 import '@pnotify/core/dist/BrightTheme.css';
 
 refs.input.addEventListener('input', debounce(onInputFill, 500));
-
-
-
 
 function onInputFill() {
     
