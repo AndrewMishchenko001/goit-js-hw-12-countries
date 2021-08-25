@@ -12,21 +12,17 @@ refs.input.addEventListener('input', debounce(onInputFill, 500));
 
 
 
-function onInputFill(e) {
-    e.preventDefault();
-    const form = e.target;
+function onInputFill() {
+    
     const searchQuery = refs.input.value;
-
-    API.fetchCountry(searchQuery)
-        .then((res) => {
-            if (res.status > 400) { throw new Error(res.status) } else return res
-        })
-        .then(renderCountryCard)
-        .catch(() => {
-            
-          onFetchError()
-        })
-        .finally(() => form.reset);
+    if (!searchQuery.trim()) {
+        return;
+    }
+API.fetchCountry(searchQuery)
+    .then(renderCountryCard)
+    .catch(() => {
+    onFetchError()
+    })
 };
 
 
@@ -36,14 +32,13 @@ function renderCountryCard(countries) {
     } else if
         (countries.length < 10 && countries.length > 1) {
         refs.cardContainer.innerHTML = countriesList(countries);
-    } else if
-        (countries.length === 1) {
-        refs.cardContainer.innerHTML = countryCard(countries[0]);
+    } else {
+        
+        refs.cardContainer.innerHTML = countryCard(countries[0])
+        refs.input.value = '';
+        }
+}
 
-    }
-    
-    
-    }
 
 
 function toMuchCountriesMessage() {

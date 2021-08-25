@@ -3,7 +3,6 @@ import './js/fetchContries';
 import './js/findCountry';
 
 
-
 // const f = fetch('https://restcountries.eu/rest/v2/name/ukraine').then(response => {
   
 //     return response.json()

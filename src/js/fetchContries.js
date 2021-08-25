@@ -1,11 +1,14 @@
-const BASE_URL = 'https://restcountries.eu/rest/v2';
+const BASE_URL = 'https://restcountries.eu/rest/v2/name/';
 
 function fetchCountry(searchQuery) {
-    return fetch(`${BASE_URL}/name/${searchQuery}`)
-        .then(async response => {
-            const res = await response.json()
-        //   console.log('res :>> ', res);
-           return res
+    return fetch(`${BASE_URL}${searchQuery}`)
+        .then(response => {
+            if (!response.ok) {
+                throw Error(response.statusText)
+            }
+        
+       
+           return response.json()
         })
 }
 
