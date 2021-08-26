@@ -10,8 +10,8 @@ refs.input.addEventListener('input', debounce(onInputFill, 500));
 
 function onInputFill() {
     
-    const searchQuery = refs.input.value;
-    if (!searchQuery.trim()) {
+    const searchQuery = refs.input.value.trim();
+    if (!searchQuery) {
         return;
     }
 API.fetchCountry(searchQuery)
@@ -26,7 +26,7 @@ function renderCountryCard(countries) {
     if (countries.length >= 10) {
         toMuchCountriesMessage();
     } else if
-        (countries.length < 10 && countries.length > 1) {
+        (countries.length <= 10 && countries.length > 1) {
         refs.cardContainer.innerHTML = countriesList(countries);
     } else {
         
